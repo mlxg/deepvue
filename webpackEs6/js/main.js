@@ -1,8 +1,12 @@
 import buttonSetTime from './buttonSetTime'
 import {fetch} from './fetch'
 import {api} from './api'
-
+import Vue from 'vue'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import '../less/main.less'
+
+Vue.use(ElementUI);
 
 buttonSetTime('btn').init({
   index: 5,
@@ -16,3 +20,10 @@ buttonSetTime('btn').init({
     console.log(data)
   }
 })
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+
+
