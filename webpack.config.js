@@ -1,22 +1,25 @@
 const path = require('path')
 const extract_text_plugin = require("extract-text-webpack-plugin")
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
 
-module.exports = {
-  mode: 'development',
-  entry: {
+
+module.exports = smp.wrap({
+  mode   : 'development',
+  entry  : {
     main: './webpackEs6/js/main.js'
   },
-  output: {
-    path: path.resolve(__dirname, 'webpackEs6/dist'),
+  output : {
+    path    : path.resolve(__dirname, 'webpackEs6/dist'),
     filename: "index.js",
   },
-  module: {
+  module : {
     rules: [
       {
-        test: /\.js$/,
+        test   : /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
+        use    : {
+          loader : "babel-loader",
           options: {
             presets: ['@babel/preset-env'],
             plugins: ['@babel/transform-runtime']
@@ -25,8 +28,8 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: extract_text_plugin.extract({
-          use: [
+        use : extract_text_plugin.extract({
+          use     : [
             'css-loader',
             'less-loader'
           ],
@@ -39,4 +42,5 @@ module.exports = {
   plugins: [
     new extract_text_plugin('main.css')
   ]
-}
+})
+

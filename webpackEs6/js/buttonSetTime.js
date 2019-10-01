@@ -19,6 +19,7 @@ ButtonSetTime.prototype.init = function(obj){
   this.element.onclick = function(){
     that.element.setAttribute('disabled', true)
     that.element.innerHTML = that.index + that.during
+
     const timeId = setInterval(function(){
       that.index--
       if(that.index === 0){
@@ -30,6 +31,7 @@ ButtonSetTime.prototype.init = function(obj){
         that.element.innerHTML = that.index + that.during
       }
     }, 1000)
+
     if(obj.fn){
       that.fn(obj.fn)
     }
@@ -42,6 +44,7 @@ ButtonSetTime.prototype.init = function(obj){
 ButtonSetTime.prototype.fn = function(fn){
   fn()
 }
+
 const buttonSetTime = function(ele){
   return new ButtonSetTime(ele)
 }

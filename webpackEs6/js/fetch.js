@@ -5,9 +5,7 @@ const fetch = {
     try{
       let res = await axios.get(url, {params: data})
       res = res.data
-      return new Promise((resolve) => {
-        resolve(res)
-      })
+      return new Promise(resolve => resolve(res))
     }catch(err){
       console.log(err)
     }
